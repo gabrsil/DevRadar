@@ -11,7 +11,10 @@ module.exports = {
 
         const devs = await Dev.find(); // acha tod
 
+    
+
         return response.json(devs);
+       
 
 
     },
@@ -51,7 +54,7 @@ module.exports = {
             //se nome da propriedade não for igual ao da variavel
             //colocar nome original da variavel antes
         })
-
+        return response.json(dev);
         }
 
         
@@ -59,6 +62,10 @@ module.exports = {
         
     
     
-        return response.json(dev);
-    }
+       
+    },
+
+
+
+
 };
