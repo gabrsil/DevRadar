@@ -8,7 +8,7 @@ import './Main.css';
 
 
 import DevItem from './components/DevItem/index';
-import DevForm from './components/DevItem/DevForm/index';
+import DevForm from './components/DevForm/index';
 
 function App() {
 

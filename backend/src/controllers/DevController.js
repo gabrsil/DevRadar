@@ -11,8 +11,6 @@ module.exports = {
 
         const devs = await Dev.find(); // acha tod
 
-    
-
         return response.json(devs);
        
 
@@ -23,7 +21,7 @@ module.exports = {
 
     async store (request, response) {
    
-        const {github_username, techs, latitude, longitude} = request.body;
+        const {github_username, techs, longitude, latitude} = request.body;
     
          let dev = await Dev.findOne({ github_username });
 

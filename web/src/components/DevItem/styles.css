@@ -4,6 +4,13 @@ li.dev-item {
     border-radius: 5px;
     padding: 20px;
     
+
+    
+}
+
+li.dev-item:hover  {
+    
+    border-bottom: 5px solid #b387ff;
 }
 
 li.dev-item header {
@@ -20,6 +27,8 @@ li.dev-item header img {
     border-radius: 50%;
   
 }
+
+
 
 li.dev-item header .user-info {
     margin-left: 10px;
@@ -49,11 +58,15 @@ li.dev-item p {
 }
 
 li.dev-item a {
-    color: #8e4dff;
+    color: #ffffff;
     font-size: 14px;
     text-decoration: none;
+  
+    background: #bd96ff;
+    padding: 3px 10px;
+    border-radius: 5px;
 }
 
 li.dev-item a:hover {
-    color: #5a2ea6;
+    color: #e6e6e6;
 }

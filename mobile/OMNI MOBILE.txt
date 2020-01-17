@@ -1,0 +1,200 @@
+Abordagem tradicional - Objective C - SWIFT/JAVA - Kotlin
+Uma aplicação para cada tipo de dispositivo 
+
+S.o mobile entende código JS por Um JavaScript Core
+e interface final é nativa 
+
+                                 
+EXPO - Framework para React-Native, possibilita utilizar ferramentas do
+dispositivo, já configuradas ex (camera, geolocation, sensors)
+ - facilita utilização do emulador 
+
+sintaxe similar a do React
+Elementos RN não tem significado semantico e não tem estilização propria
+Não existem classes nem IDS
+Components aceitam objeto chamado Styles, contendo OBJETO da estilização
+Propriedades css com dois nomes usam camelCase e o valor da propriedade fica entre aspas
+fontWeight: "bold";
+
+Não possui herança de estilização
+filho não herda estilização de pai
+
+//Component RN
+import React from 'react'; 
+import { View } from 'react-native';
+
+
+function Main() {
+
+    return <View />
+
+}
+
+export default Main;
+//
+
+
+Babel - converte js das versões mais recentes para outras antigas
+
+View - Div do RN
+
+navegação
+
+yarn add react-navigation
+expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context
+yarn add react-navigation-stack
+yarn add @react-native-community/masked-view
+
+
+
+React-navigation - navegação entre rotas RN
+
+react-native-gesture-handler -- gestos na navegação entre telas
+
+navegação por pilha - ativada por botão
+
+
+        import { createAppContainer } from 'react-navigation';
+        import { createStackNavigator } from 'react-navigation-stack';
+        
+        const Routes = createAppContainer(
+            createStackNavigator({
+                Main,    // rotas da aplicação
+                Profile,
+            })
+        );
+
+
+        ALTERA O NOME DA TELA 
+
+        Main: {
+            screen: Main,
+            navigationOptions: {
+                title: 'DevRadar'
+            }
+        },
+
+
+         defaultNavigationOptions: {
+             headerTintColor: #FFF - Cor do titulo do headerTintColor
+             headerStyle: {
+                 objeto com styles para o header menos font 
+             }
+         } - altera estilos para todas as telas
+         
+
+         import { StatusBar } from 'react-native'; - barra de status superior alterações
+         <StatusBar propriedades barStyle="cor dos icones - dark-content ou light-content"/>
+
+
+        API MAPA
+
+         expo install react-native-maps 
+
+         import  MapView  from 'react-native-maps';
+
+         expo install expo-location
+
+         import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location'
+          permissao para pegar localização / pegar posicao
+
+
+           const { granted } = await requestPermissionsAsync(); - retorna varias variaveis entre elas granted que é um boolean da
+           permissao do user
+           
+           //so funciona se gps do cell estiver ligado
+           if(granted) {
+             const location = await getCurrentPositionAsync({
+                 enableHighAccuracy: true,
+             });
+         }
+
+         
+    //SETAR ESTADO LOCALIZAÇÃO
+       setCurrentRegion({
+                 latitude,
+                 longitude,
+                 latitudeDelta: ,
+                 longitudeDelta , 
+             })
+ 
+      latitudeDelta e longitudeDelta servem para habilitar o zoom
+
+
+<MapView initialRegion={currentRegion} /> - passa nas props do MapView a localização inicial
+
+
+
+///
+{Marker} no import do MapView - Marcação personalizada NO MAPA
+
+ <Marker coordinate={{ latitude:-15.8441935, longitude: -47.9442794}}> 
+ <Image source={}/>  - imagem
+ Marker/> - passando cordenadas imagem e estilização para o marcador
+
+ <Callout> - leva para outra tela
+
+ onPress={} - ativar evento ao clique 
+
+ function Main( {navigation} ) {} - parametro vem automaticamente para todas paginas da aplicação
+
+
+ navigation.navigate('Profile', {github_username: 'angells1'}); -- Primeiro parametro pagina para qual deve ir, segundo parametro 
+ configurações 
+
+//PEGAR PARAMETRO DE OUTRAS ROTAS
+ const githubUsername = navigation.getParam('github_username');
+                        navigator - parametro recebido por desetruturação
+
+//INPUT DE TEXTO
+<TextInput></TextInput>
+
+autoCapitalize="words" - propriedade TextInput primeira letra das palavras sempre maiusculas
+
+TouchableOpacity - Botao que diminui opacidade
+
+//ICONES PADRONIZADOS
+
+import { MaterialIcons } from '@expo/vector-icons';
+
+<MaterialIcons name="my-location"/> - 
+
+https://material.io/resources/icons/?style=sharp
+
+Todos elementos React possuem por padrão display-flex
+
+paddingHorizontal: 20, -- aplicar padding somente nas laterais
+
+
+
+//SOMBRA IOS 
+shadowColor: '#000',
+        shadowOpacity: 0.2,
+        shadowOffset: {
+            width: 4,
+            height: 4,
+        }
+
+//SOMBRA ANDROID 
+ elevation: 2,
+
+
+ //AXIOS
+ Fazer chamada a API NO MOBILe
+
+ import axios from 'axios';
+
+const api = axios.create({
+   baseURL: 'htttp://192.168.15.9:3333',  //utiliza endereço do expo com porta do NODE
+});
+
+export default api;
+
+onRegionChangeComplete - propriedade MapView executa função quando usuario muda de localização no mapa
+
+
+//Carregar coisas DINAMICAMENTE 
+{devs.map(dev => (CONTEUDO DINAMICO) 
+
+//pegar valor input text toda vez que alterar
+onChangeText={text => setTechs(text)}
